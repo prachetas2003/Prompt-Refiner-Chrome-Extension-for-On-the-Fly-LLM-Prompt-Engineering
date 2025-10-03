@@ -1,0 +1,43 @@
+{
+  "name": "prompt-refiner",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build && npm run build:background && npm run fix:manifest",
+    "build:background": "esbuild src/background/llmProxy.ts --bundle --format=esm --outfile=dist/background.js --target=es2020 --minify=false",
+    "fix:manifest": "node -e \"const fs=require('fs');const m=JSON.parse(fs.readFileSync('dist/manifest.json'));m.background={service_worker:'background.js',type:'module'};fs.writeFileSync('dist/manifest.json',JSON.stringify(m,null,2));\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.0.2",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.13",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "autoprefixer": "^10.4.21",
+    "esbuild": "^0.20.0",
+    "eslint": "^9.31.0",
+    "jest": "^30.0.4",
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "stylelint": "^16.21.1",
+    "stylelint-config-standard": "^38.0.0",
+    "stylelint-config-tailwindcss": "^1.0.0",
+    "tailwindcss": "^4.1.11",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.4",
+    "vite-plugin-dts": "^4.5.4"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}

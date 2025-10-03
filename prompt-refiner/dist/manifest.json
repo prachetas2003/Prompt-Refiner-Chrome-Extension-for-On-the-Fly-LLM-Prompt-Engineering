@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "Prompt‑Refiner",
+  "description": "Turns vague requests into engineered AI prompts.",
+  "version": "0.1.0",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://generativelanguage.googleapis.com/*"
+  ],
+  "icons": {
+    "16": "public/icon16.png",
+    "48": "public/icon48.png",
+    "128": "public/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "assets/modifyButton.tsx-Dy0UVTFg.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "options_page": "src/options/index.html",
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "assets/modifyButton.tsx-Dy0UVTFg.js"
+      ],
+      "use_dynamic_url": false
+    }
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  }
+}
